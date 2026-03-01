@@ -35,6 +35,9 @@ cd app-posting-client-bonuses-app
 
 # Очистить и собрать проект
 mvn clean package
+
+# Запустить
+mvn spring-boot:run
 ```
 
 # В приложении реализовано:
@@ -54,3 +57,66 @@ mvn clean package
 ### Пагинация для операций получения истории транзакций
 
 ### Документация Swagger по адрессу 'http://localhost:8080/api/swagger-ui/index.html#/'
+
+### Liquibase
+
+### Авторизация и аутентификация пользователей с 3-мя ролями
+
+# Работа с авторизацией пользователей:
+
+1) Получить jwt токен для авторизации, введя данные одного из пользователей, которые есть в бд
+   отправив POST /v1/auth/login с телом:
+   {
+   "username": "имя пользователя",
+   "password": "пароль"
+   }
+```text
+# Примеры готовых пользователей:
+
+- роль BONUS_ADMIN - CRUD-операции с пользователями
+{
+   "username": "valeriy",
+   "password": "password"
+}
+
+- роль BONUS_WRITE - операции чтения баланса
+{
+   "username": "petr.writer",
+   "password": "2"
+}
+
+- роль BONUS_READ - операции изменения баланса
+{
+   "username": "anna.reader",
+   "password": "1"
+}
+
+- роль BONUS_READ + BONUS_WRITE - любые операции с бонусами
+{
+   "username": "elena.both",
+   "password": "3"
+}
+```
+
+2) После получения тела ответа в формате:
+
+```text
+{
+  "token": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJlbGVuYS5ib3RoIiwiaWF0IjoxNzcyMzk0ODE3LCJleHAiOjE3NzI0ODEyMTd9.NBg0FWF1GSZsqkqY6AksQ37Eji93lvh_eqo5cIJBKGc",
+  "username": "elena.both",
+  "roles": [
+    "BONUS_READ",
+    "BONUS_WRITE"
+  ]
+}
+```
+вставляем полученый токен без кавычек в поле для токена(swagger) или 
+```text
+-H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+```
+
+После этих операций будет обеспечен доступ к эндпойнтам, согласно нашей роли
+
+## P.s.
+В связи с ограниченным количеством времени, не успел проработать архитектуру модуля security. Функционал реализован
+полностью, задача выполнена, однако такое решение плохо способствует расширяемости сервиса. Знаю как сделать лучше)

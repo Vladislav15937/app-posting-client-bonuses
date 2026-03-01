@@ -64,9 +64,6 @@ springdoc:
     tags-sorter: alpha
     try-it-out-enabled: true
     disable-swagger-default-url: true
-    urls:
-      - url: /api-docs
-        name: Bonus Service API
 
 logging:
   level:
@@ -74,6 +71,10 @@ logging:
     org.springframework.web: INFO
     org.hibernate.SQL: DEBUG
     org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    ru.retail.service.app.security: TRACE
+    org.springframework.security: DEBUG
+    com.zaxxer.hikari: DEBUG
+    org.springframework.security.web.FilterChainProxy: TRACE
 
 management:
   observations:

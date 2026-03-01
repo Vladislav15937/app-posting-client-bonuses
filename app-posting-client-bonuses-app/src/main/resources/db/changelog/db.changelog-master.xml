@@ -8,4 +8,7 @@
     <include file="/db/changelog/v1/00-baseline-marker.sql.sql"/>
     <include file="db/changelog/v2/01-01_03_2026-insert-test-data.sql"/>
     <include file="db/changelog/v2/02-01_03_2026-insert-new-card.sql"/>
+    <include file="db/changelog/v3/01-01_03_2026-create-users-tables.sql"/>
+    <include file="db/changelog/v3/02-01_03_2026-insert-roles.sql"/>
+    <include file="db/changelog/v3/03-01_03_2026-add-admin-valeriy.sql"/>
 </databaseChangeLog>

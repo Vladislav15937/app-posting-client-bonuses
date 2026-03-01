@@ -13,6 +13,7 @@
     <modules>
         <module>docker-postgres</module>
         <module>app-posting-client-bonuses-app</module>
+        <module>app-security-service</module>
     </modules>
 
     <parent>
