@@ -23,6 +23,14 @@ spring:
         order_inserts: true
         order_updates: true
 
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.xml
+    default-schema: bonus_system
+    liquibase-schema: public
+    drop-first: false
+    contexts: dev,test
+
   cache:
     type: caffeine
     caffeine:
