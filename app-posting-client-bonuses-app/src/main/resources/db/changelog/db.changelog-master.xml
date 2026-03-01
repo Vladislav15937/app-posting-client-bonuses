@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.20.xsd">
+
+    <include file="/db/changelog/v1/00-baseline-marker.sql.sql"/>
+    <include file="db/changelog/v2/01-01_03_2026-insert-test-data.sql"/>
+    <include file="db/changelog/v2/02-01_03_2026-insert-new-card.sql"/>
+</databaseChangeLog>
