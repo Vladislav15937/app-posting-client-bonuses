@@ -11,4 +11,5 @@
     <include file="db/changelog/v3/01-01_03_2026-create-users-tables.sql"/>
     <include file="db/changelog/v3/02-01_03_2026-insert-roles.sql"/>
     <include file="db/changelog/v3/03-01_03_2026-add-admin-valeriy.sql"/>
+    <include file="db/changelog/v4/01-02_03_2026-add-index-with-bonus.sql"/>
 </databaseChangeLog>
