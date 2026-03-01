@@ -1,7 +1,7 @@
 -- liquibase formatted sql
 
 -- ===================================================
--- changeset inzhevatkin.v:4-3-1
+-- changeset inzhevatkin.v:3-3-1
 -- comment: Добавление администратора Валерия
 -- ===================================================
 -- пароль: password
@@ -11,7 +11,7 @@ SELECT 'valeriy', '$2a$12$mSzoiYAM2JwpA3OcErYWZ.SUv6PS.8sfUdH6DCyb8.YQMui93SFOC'
     WHERE NOT EXISTS (SELECT 1 FROM bonus_system.users WHERE username = 'valeriy');
 
 -- ===================================================
--- changeset inzhevatkin.v:4-3-2
+-- changeset inzhevatkin.v:3-3-2
 -- comment: Назначение роли BONUS_ADMIN Валерию
 -- ===================================================
 INSERT INTO bonus_system.user_roles (user_id, role_id)
@@ -21,7 +21,7 @@ WHERE u.username = 'valeriy' AND r.name = 'BONUS_ADMIN'
     ON CONFLICT DO NOTHING;
 
 -- ===================================================
--- changeset inzhevatkin.v:4-3-3
+-- changeset inzhevatkin.v:3-3-3
 -- comment: Создаём пользователя с ролью BONUS_READ
 -- ===================================================
 
@@ -40,7 +40,7 @@ WHERE u.username = 'anna.reader' AND r.name = 'BONUS_READ'
     ON CONFLICT DO NOTHING;
 
 -- ===================================================
--- changeset inzhevatkin.v:4-3-4
+-- changeset inzhevatkin.v:3-3-4
 -- comment: Создаём пользователя с ролью BONUS_WRITE
 -- ===================================================
 
