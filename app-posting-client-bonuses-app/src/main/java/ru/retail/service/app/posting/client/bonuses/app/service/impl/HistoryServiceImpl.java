@@ -30,12 +30,11 @@ public class HistoryServiceImpl implements HistoryService {
     public Page<TransactionResponse> getTransactionHistory(String cardNumber, Pageable pageable) {
         log.info("Запрос истории операций: карта={}, page={}, size={}, sort={}",
                 cardNumber, pageable.getPageNumber(), pageable.getPageSize(), pageable.getSort());
-
-        cardValidator.validateExists(cardNumber);
-
         Page<Transaction> transactionsPage = transactionRepository
                 .findByCard_CardNumber(cardNumber, pageable);
-
+        if (transactionsPage.isEmpty()) {
+            cardValidator.validateExists(cardNumber);
+        }
         return transactionsPage.map(mapper::toTransactionResponse);
     }
 
@@ -48,15 +47,13 @@ public class HistoryServiceImpl implements HistoryService {
 
         log.info("Запрос истории операций за период: карта={}, с={}, по={}, page={}, size={}",
                 cardNumber, startDate, endDate, pageable.getPageNumber(), pageable.getPageSize());
-
-        cardValidator.validateExists(cardNumber);
-
         LocalDateTime startDateTime = startDate.atStartOfDay();
         LocalDateTime endDateTime = endDate.atTime(23, 59, 59);
-
         Page<Transaction> transactionsPage = transactionRepository
                 .findByCard_CardNumberAndCreatedAtBetween(cardNumber, startDateTime, endDateTime, pageable);
-
+        if (transactionsPage.isEmpty()) {
+            cardValidator.validateExists(cardNumber);
+        }
         return transactionsPage.map(mapper::toTransactionResponse);
     }
 }

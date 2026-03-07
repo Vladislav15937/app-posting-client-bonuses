@@ -13,7 +13,9 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import java.util.List;
 @Entity
 @Table(name = "card", schema = "bonus_system")
 @Data
+@EqualsAndHashCode(exclude = {"transactions"})
+@ToString(exclude = {"transactions"})
 @NoArgsConstructor
 @AllArgsConstructor
 public class Card {

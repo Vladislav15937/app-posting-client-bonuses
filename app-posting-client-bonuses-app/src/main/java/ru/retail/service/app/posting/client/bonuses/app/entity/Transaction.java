@@ -10,10 +10,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.NamedAttributeNode;
+import jakarta.persistence.NamedEntityGraph;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -21,8 +25,17 @@ import java.util.UUID;
 @Entity
 @Table(name = "transaction", schema = "bonus_system")
 @Data
+@EqualsAndHashCode(exclude = {"card", "parentTransaction"})
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"card", "parentTransaction"})
+@NamedEntityGraph(
+        name = "Transaction.withCardAndParent",
+        attributeNodes = {
+                @NamedAttributeNode("card"),
+                @NamedAttributeNode("parentTransaction")
+        }
+)
 public class Transaction {
 
     @Id
